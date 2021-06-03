@@ -6,7 +6,6 @@ const client = new Discord.Client()
 client.on('voiceStateUpdate', async function(oldState, newState){
     if(newState.channel == null) {return}
     if(oldState.channel != null && oldState.channel.id == newState.channel.id) {return}
-    if(!newState.deaf && !newState.mute) {return}
 
     console.log("--------------")
     console.log(`user: ${newState.member.nickname}, ${newState.member.id}`)
@@ -18,6 +17,7 @@ client.on('voiceStateUpdate', async function(oldState, newState){
 
     await delay(1000)
 
+    if(!newState.deaf) {return}
     if(newState.channel.parent.name == "undeafen"){
         chans = newState.channel.parent.children
         for(i = 0; i< chans.size; i++){
