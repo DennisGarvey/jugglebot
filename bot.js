@@ -18,6 +18,7 @@ client.on('voiceStateUpdate', async function(oldState, newState){
     await delay(1000)
 
     if(!newState.deaf) {return}
+    if(newState.channel == null) {return}
     if(newState.channel.parent.name == "undeafen"){
         chans = newState.channel.parent.children
         for(i = 0; i< chans.size; i++){
