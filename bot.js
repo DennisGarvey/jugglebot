@@ -26,7 +26,12 @@ client.on('voiceStateUpdate', async function(oldState, newState){
                 return channel.id == newState.channel.id
             })
         }
-        newState.member.voice.setChannel(chans.first())
+        try{
+            newState.member.voice.setChannel(chans.first())
+        }
+        catch{
+            
+        }
         
     }
 })
